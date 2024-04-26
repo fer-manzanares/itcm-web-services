@@ -38,7 +38,7 @@ public class Product implements Serializable {
 	@Column
 	BigDecimal price;
 	
-	@Column
+	@Column()
 	String image;
 	
 	@OneToOne

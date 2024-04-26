@@ -35,10 +35,10 @@ public class ProductController {
 	 }
 	 
 	 @PutMapping("")
-	 ProductDtoResponse updateProduct(@RequestBody ProductDtoResponse newProduct) {
-		 System.out.println(newProduct.toString());
+	 ProductDtoResponse updateProduct(@RequestBody ProductDtoResponse product) {
+		 System.out.println(product.toString());
 		 try {
-			 return productService.update(newProduct);
+			 return productService.update(product);
 		 }catch(Exception e) {
 			 throw new ResponseStatusException(
 			          HttpStatus.BAD_REQUEST, "No pudo crearse el producto debido a información incorrecta", e);

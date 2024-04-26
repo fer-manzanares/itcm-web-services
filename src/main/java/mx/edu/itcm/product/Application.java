@@ -16,7 +16,9 @@ import mx.edu.itcm.product.service.ProductService;
 public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		 SpringApplication application = new SpringApplication(Application.class);
+	     application.setAdditionalProfiles("ssl");
+	     application.run(args);
 	}
 
 	@Bean

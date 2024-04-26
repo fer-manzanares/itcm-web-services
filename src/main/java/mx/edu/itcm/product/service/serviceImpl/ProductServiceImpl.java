@@ -1,5 +1,6 @@
 package mx.edu.itcm.product.service.serviceImpl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,10 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductDtoResponse findOneById(int id) {
-		return modelMapper.map(productRepository.findOneById(id), ProductDtoResponse.class);
+		Product product = productRepository.findOneById(id);
+		ProductDtoResponse prodctResponse = modelMapper.map(product, ProductDtoResponse.class);
+		prodctResponse.setPrice(product.getPrice().multiply(BigDecimal.ONE.subtract(product.getCategory().getDiscount())).multiply(BigDecimal.ONE.add(product.getCategory().getIva())).toPlainString());
+		return prodctResponse;
 	}
 
 	@Override
